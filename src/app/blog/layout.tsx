@@ -11,8 +11,10 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="w-full">
-      <div className="md:container md:mx-auto md:px-4">{children}</div>
+    <div className="w-full min-h-svh py-8">
+      <article className="prose prose-slate dark:prose-invert md:container md:mx-auto px-6 md:px-24 lg:36 py-4l">
+        {children}
+      </article>
     </div>
   );
 }
