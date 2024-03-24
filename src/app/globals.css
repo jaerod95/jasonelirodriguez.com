@@ -11,8 +11,8 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background-start-rgb: 17, 17, 17;
+    --background-end-rgb: 17, 17, 17;
   }
 }
 
@@ -29,5 +29,25 @@ body {
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+/* CSS for MDX Editor */
+
+div.mdxeditor-root-contenteditable > div,
+div.mdxeditor-root-contenteditable {
+  min-height: 50vh;
+}
+
+@media (prefers-color-scheme: dark) {
+  div.mdxeditor {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    min-height: 50vh;
+  }
+
+  div.mdxeditor-toolbar {
+    background-color: #333;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
   }
 }

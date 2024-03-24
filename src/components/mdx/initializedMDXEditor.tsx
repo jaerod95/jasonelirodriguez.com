@@ -8,11 +8,18 @@ import {
   thematicBreakPlugin,
   markdownShortcutPlugin,
   MDXEditor,
-  UndoRedo,
-  BoldItalicUnderlineToggles,
   toolbarPlugin,
   type MDXEditorMethods,
   type MDXEditorProps,
+  KitchenSinkToolbar,
+  linkPlugin,
+  linkDialogPlugin,
+  imagePlugin,
+  tablePlugin,
+  frontmatterPlugin,
+  codeBlockPlugin,
+  codeMirrorPlugin,
+  diffSourcePlugin,
 } from "@mdxeditor/editor";
 import "@mdxeditor/editor/style.css";
 
@@ -24,21 +31,27 @@ export default function InitializedMDXEditor({
   return (
     <MDXEditor
       plugins={[
-        // Example Plugin Usage
-        headingsPlugin(),
+        toolbarPlugin({ toolbarContents: () => <KitchenSinkToolbar /> }),
         listsPlugin(),
         quotePlugin(),
+        headingsPlugin(),
+        linkPlugin(),
+        linkDialogPlugin(),
+        imagePlugin(),
+        tablePlugin(),
         thematicBreakPlugin(),
-        markdownShortcutPlugin(),
-        toolbarPlugin({
-          toolbarContents: () => (
-            <>
-              {" "}
-              <UndoRedo />
-              <BoldItalicUnderlineToggles />
-            </>
-          ),
+        frontmatterPlugin(),
+        codeBlockPlugin({ defaultCodeBlockLanguage: "txt" }),
+        codeMirrorPlugin({
+          codeBlockLanguages: {
+            js: "JavaScript",
+            css: "CSS",
+            txt: "text",
+            tsx: "TypeScript",
+          },
         }),
+        diffSourcePlugin({ viewMode: "rich-text", diffMarkdown: "boo" }),
+        markdownShortcutPlugin(),
       ]}
       {...props}
       ref={editorRef}
