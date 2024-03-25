@@ -13,13 +13,15 @@ async function getRecentPosts({ page }: { page: number }) {
   const recentPosts = await Post.find({})
     .limit(POSTS_PER_PAGE)
     .skip(page * POSTS_PER_PAGE)
-    .select("title createdAt")
+    .select("_id title createdAt updatedAt")
     .lean();
 
   return (
     <ul>
       {recentPosts.map((post) => (
-        <li key={post._id.toString()}>{post.title}</li>
+        <li key={post._id.toString()}>
+          <Link href={`/blog/edit/${post._id.toString()}`}>{post.title}</Link>{" "}
+        </li>
       ))}
     </ul>
   );
