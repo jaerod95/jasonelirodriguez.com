@@ -1,0 +1,16 @@
+"use server";
+
+import Post from "@/schema/Post";
+import dbConnect from "@/schema/db";
+import { IPost } from "@/schema/post.types";
+
+export async function getDoc(_id: string): Promise<IPost | null> {
+  await dbConnect();
+  return await Post.findById(_id).lean();
+}
+
+export async function saveDoc(doc: IPost, formData: FormData) {
+  await dbConnect();
+  console.log("saveDoc", doc, formData);
+  await Post.updateOne({ _id: doc._id }, doc, { upsert: true });
+}

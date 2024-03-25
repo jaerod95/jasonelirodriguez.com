@@ -1,5 +1,7 @@
 import dbConnect from "@/schema/db";
-import Post from "@/schema/post";
+import Post from "@/schema/Post";
+import { Types } from "mongoose";
+import Link from "next/link";
 import { Suspense } from "react";
 
 const POSTS_PER_PAGE = 10;
@@ -30,7 +32,12 @@ export default async function BlogPosts() {
     <>
       <h1>Blog Posts</h1>
       <Suspense fallback={<div>Loading...</div>}>{posts}</Suspense>
-      <button>New Post</button>
+      <Link
+        className="rounded bg-slate-800 px-4 py-2 no-underline"
+        href={`/blog/edit/${new Types.ObjectId().toString()}`}
+      >
+        New Post
+      </Link>
     </>
   );
 }

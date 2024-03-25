@@ -40,6 +40,10 @@ div.mdxeditor-root-contenteditable {
 }
 
 @media (prefers-color-scheme: dark) {
+  div.cm-editor {
+    background-color: #1f1f1f;
+    color: #fff;
+  }
   div.mdxeditor {
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -49,5 +53,11 @@ div.mdxeditor-root-contenteditable {
   div.mdxeditor-toolbar {
     background-color: #333;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+  }
+  div.cm-gutterElement {
+    color: white;
+  }
+  div.cm-gutterElement.cm-activeLineGutter {
+    background-color: #333;
   }
 }

@@ -23,19 +23,19 @@ const definition: SchemaDefinition<SchemaDefinitionType<PostSchema>> = {
   title: {
     type: String,
     required: true,
+    default: "",
   },
   content: {
     type: String,
     required: true,
+    default: "",
   },
   createdAt: {
     type: Date,
-    required: true,
     default: Date.now,
   },
   updatedAt: {
     type: Date,
-    required: true,
     default: Date.now,
   },
 };

@@ -8,6 +8,8 @@ import {
   thematicBreakPlugin,
   markdownShortcutPlugin,
   MDXEditor,
+  UndoRedo,
+  BoldItalicUnderlineToggles,
   toolbarPlugin,
   type MDXEditorMethods,
   type MDXEditorProps,
@@ -18,20 +20,42 @@ import {
   tablePlugin,
   frontmatterPlugin,
   codeBlockPlugin,
+  sandpackPlugin,
   codeMirrorPlugin,
+  directivesPlugin,
   diffSourcePlugin,
+  BlockTypeSelect,
+  ChangeAdmonitionType,
+  AdmonitionDirectiveDescriptor,
+  SandpackConfig,
+  CodeToggle,
+  DiffSourceToggleWrapper,
 } from "@mdxeditor/editor";
 import "@mdxeditor/editor/style.css";
+
+export interface IInitMDXEditorProps {
+  diffMarkdown?: string;
+}
 
 // Only import this to the next file
 export default function InitializedMDXEditor({
   editorRef,
   ...props
-}: { editorRef: ForwardedRef<MDXEditorMethods> | null } & MDXEditorProps) {
+}: { editorRef: ForwardedRef<MDXEditorMethods> | null } & MDXEditorProps &
+  IInitMDXEditorProps) {
   return (
     <MDXEditor
       plugins={[
-        toolbarPlugin({ toolbarContents: () => <KitchenSinkToolbar /> }),
+        toolbarPlugin({
+          toolbarContents: () => {
+            return (
+              <DiffSourceToggleWrapper>
+                <BoldItalicUnderlineToggles />
+                <UndoRedo />
+              </DiffSourceToggleWrapper>
+            );
+          },
+        }),
         listsPlugin(),
         quotePlugin(),
         headingsPlugin(),
@@ -41,16 +65,10 @@ export default function InitializedMDXEditor({
         tablePlugin(),
         thematicBreakPlugin(),
         frontmatterPlugin(),
-        codeBlockPlugin({ defaultCodeBlockLanguage: "txt" }),
-        codeMirrorPlugin({
-          codeBlockLanguages: {
-            js: "JavaScript",
-            css: "CSS",
-            txt: "text",
-            tsx: "TypeScript",
-          },
+        diffSourcePlugin({
+          viewMode: "source",
+          diffMarkdown: props.diffMarkdown || "",
         }),
-        diffSourcePlugin({ viewMode: "rich-text", diffMarkdown: "boo" }),
         markdownShortcutPlugin(),
       ]}
       {...props}
