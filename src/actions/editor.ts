@@ -1,6 +1,6 @@
 "use server";
 
-import Post from "@/schema/Posts";
+import Post from "@/schema/Post";
 import dbConnect from "@/schema/db";
 import { IPost } from "@/schema/post.types";
 
