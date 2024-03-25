@@ -1,9 +1,5 @@
-import { saveDoc } from "@/actions/editor";
 import Editor from "@/components/mdx/editor";
-import { IPost } from "@/schema/post.types";
-import { useState } from "react";
 import { getDoc } from "@/actions/editor";
-import Post from "@/schema/Post";
 
 export default async function NewEditor({
   params,
@@ -12,7 +8,7 @@ export default async function NewEditor({
 }) {
   let originalPost = (await getDoc(params._id)) || {
     _id: params._id,
-    title: "",
+    title: "Draft",
     content: "",
     createdAt: new Date(),
     updatedAt: new Date(),

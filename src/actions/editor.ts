@@ -12,5 +12,8 @@ export async function getDoc(_id: string): Promise<IPost | null> {
 export async function saveDoc(doc: IPost, formData: FormData) {
   await dbConnect();
   console.log("saveDoc", doc, formData);
-  await Post.updateOne({ _id: doc._id }, doc, { upsert: true });
+  return await Post.findOneAndUpdate({ _id: doc._id }, doc, {
+    upsert: true,
+    new: true,
+  });
 }

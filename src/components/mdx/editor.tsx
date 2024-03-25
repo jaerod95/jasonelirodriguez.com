@@ -2,13 +2,15 @@
 
 import { ForwardRefEditor } from "@/components/mdx/forwardRefEditor";
 import { MDXEditorMethods } from "@mdxeditor/editor";
-import { useRef, useState } from "react";
+import { useOptimistic, useRef, useState } from "react";
 import clsx from "clsx";
 import style from "./editor.module.css";
 import { IPost } from "@/schema/post.types";
 import { saveDoc } from "@/actions/editor";
 
-export default function Editor({ originalPost }: { originalPost: IPost }) {
+export default function Editor(props: { originalPost: IPost }) {
+  const [originalPost, setOriginalPost] = useState<IPost>(props.originalPost);
+
   const editorRef = useRef<MDXEditorMethods>(null);
 
   const [title, setTitle] = useState<string>(originalPost.title);
@@ -21,7 +23,14 @@ export default function Editor({ originalPost }: { originalPost: IPost }) {
       <div className="flex justify-between items-center p-8">
         <h1>New Page</h1>
         <div className="flex space-x-4">
-          <button className="btn" type="submit" formAction={savePost}>
+          <button
+            className="btn"
+            type="submit"
+            formAction={async function handleSave(formData: FormData) {
+              const response = (await savePost(formData)) as IPost;
+              setOriginalPost(response);
+            }}
+          >
             Save
           </button>
         </div>
