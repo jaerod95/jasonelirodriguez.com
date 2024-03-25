@@ -3,7 +3,7 @@ import Editor from "@/components/mdx/editor";
 import { IPost } from "@/schema/post.types";
 import { useState } from "react";
 import { getDoc } from "@/actions/editor";
-import Post from "@/schema/Post";
+import Post from "@/schema/Posts";
 
 export default async function NewEditor({
   params,

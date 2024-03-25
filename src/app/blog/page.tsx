@@ -1,5 +1,5 @@
 import dbConnect from "@/schema/db";
-import Post from "@/schema/Post";
+import Post from "@/schema/Posts";
 import { Types } from "mongoose";
 import Link from "next/link";
 import { Suspense } from "react";
