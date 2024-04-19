@@ -11,23 +11,49 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background-start-rgb: 17, 17, 17;
+    --background-end-rgb: 17, 17, 17;
   }
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb)))
     rgb(var(--background-start-rgb));
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+/* CSS for MDX Editor */
+
+div.mdxeditor-root-contenteditable > div,
+div.mdxeditor-root-contenteditable {
+  min-height: 50vh;
+}
+
+@media (prefers-color-scheme: dark) {
+  div.cm-editor {
+    background-color: #1f1f1f;
+    color: #fff;
+  }
+  div.mdxeditor {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    min-height: 50vh;
+  }
+
+  div.mdxeditor-toolbar {
+    background-color: #333;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+  }
+  div.cm-gutterElement {
+    color: white;
+  }
+  div.cm-gutterElement.cm-activeLineGutter {
+    background-color: #333;
   }
 }
