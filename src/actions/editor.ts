@@ -6,7 +6,7 @@ import { IPost } from "@/schema/post.types";
 
 export async function getDoc(_id: string): Promise<IPost | null> {
   await dbConnect();
-  return await Post.findById(_id).lean();
+  return JSON.parse(JSON.stringify(await Post.findById(_id).lean()));
 }
 
 export async function saveDoc(doc: IPost, formData: FormData) {

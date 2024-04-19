@@ -1,6 +1,5 @@
 import dbConnect from "@/schema/db";
 import Post from "@/schema/Post";
-import { Types } from "mongoose";
 import Link from "next/link";
 import { Suspense } from "react";
 
@@ -20,7 +19,7 @@ async function getRecentPosts({ page }: { page: number }) {
     <ul>
       {recentPosts.map((post) => (
         <li key={post._id.toString()}>
-          <Link href={`/blog/edit/${post._id.toString()}`}>{post.title || "Untitled Post"}</Link>{" "}
+          <Link href={`/blog/${post._id.toString()}`}>{post.title || "Untitled Post"}</Link>{" "}
         </li>
       ))}
     </ul>
@@ -34,12 +33,6 @@ export default async function BlogPosts() {
     <>
       <h1>Blog Posts</h1>
       <Suspense fallback={<div>Loading...</div>}>{posts}</Suspense>
-      <Link
-        className="rounded bg-slate-800 px-4 py-2 no-underline"
-        href={`/blog/edit/${new Types.ObjectId().toString()}`}
-      >
-        New Post
-      </Link>
     </>
   );
 }
