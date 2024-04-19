@@ -1,12 +1,12 @@
 "use client";
 
-import { ForwardRefEditor } from "@/components/mdx/forwardRefEditor";
-import { MDXEditorMethods } from "@mdxeditor/editor";
-import { useOptimistic, useRef, useState } from "react";
-import clsx from "clsx";
-import style from "./editor.module.css";
-import { IPost } from "@/schema/post.types";
 import { saveDoc } from "@/actions/editor";
+import { ForwardRefEditor } from "@/components/mdx/forwardRefEditor";
+import { IPost } from "@/schema/post.types";
+import { MDXEditorMethods } from "@mdxeditor/editor";
+import clsx from "clsx";
+import { useRef, useState } from "react";
+import style from "./editor.module.css";
 
 export default function Editor(props: { originalPost: IPost }) {
   const [originalPost, setOriginalPost] = useState<IPost>(props.originalPost);

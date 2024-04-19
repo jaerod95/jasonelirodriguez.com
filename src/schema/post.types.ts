@@ -1,9 +1,7 @@
-import z from "zod";
 import { Types } from "mongoose";
+import z from "zod";
 
-const ZObjectId = z
-  .instanceof(Types.ObjectId)
-  .transform((val) => val.toString());
+const ZObjectId = z.instanceof(Types.ObjectId).transform((val) => val.toString());
 
 export const ZPost = z.object({
   _id: ZObjectId.or(z.string()),

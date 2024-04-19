@@ -1,11 +1,7 @@
-import Editor from "@/components/mdx/editor";
 import { getDoc } from "@/actions/editor";
+import Editor from "@/components/mdx/editor";
 
-export default async function NewEditor({
-  params,
-}: {
-  params: { _id: string };
-}) {
+export default async function NewEditor({ params }: { params: { _id: string } }) {
   let originalPost = (await getDoc(params._id)) || {
     _id: params._id,
     title: "Draft",

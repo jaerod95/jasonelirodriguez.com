@@ -20,7 +20,7 @@ async function getRecentPosts({ page }: { page: number }) {
     <ul>
       {recentPosts.map((post) => (
         <li key={post._id.toString()}>
-          <Link href={`/blog/edit/${post._id.toString()}`}>{post.title}</Link>{" "}
+          <Link href={`/blog/edit/${post._id.toString()}`}>{post.title || "Untitled Post"}</Link>{" "}
         </li>
       ))}
     </ul>

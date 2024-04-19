@@ -1,37 +1,27 @@
 "use client";
 
-import type { ForwardedRef } from "react";
 import {
-  headingsPlugin,
-  listsPlugin,
-  quotePlugin,
-  thematicBreakPlugin,
-  markdownShortcutPlugin,
+  BoldItalicUnderlineToggles,
+  DiffSourceToggleWrapper,
   MDXEditor,
   UndoRedo,
-  BoldItalicUnderlineToggles,
+  diffSourcePlugin,
+  frontmatterPlugin,
+  headingsPlugin,
+  imagePlugin,
+  linkDialogPlugin,
+  linkPlugin,
+  listsPlugin,
+  markdownShortcutPlugin,
+  quotePlugin,
+  tablePlugin,
+  thematicBreakPlugin,
   toolbarPlugin,
   type MDXEditorMethods,
   type MDXEditorProps,
-  KitchenSinkToolbar,
-  linkPlugin,
-  linkDialogPlugin,
-  imagePlugin,
-  tablePlugin,
-  frontmatterPlugin,
-  codeBlockPlugin,
-  sandpackPlugin,
-  codeMirrorPlugin,
-  directivesPlugin,
-  diffSourcePlugin,
-  BlockTypeSelect,
-  ChangeAdmonitionType,
-  AdmonitionDirectiveDescriptor,
-  SandpackConfig,
-  CodeToggle,
-  DiffSourceToggleWrapper,
 } from "@mdxeditor/editor";
 import "@mdxeditor/editor/style.css";
+import type { ForwardedRef } from "react";
 
 export interface IInitMDXEditorProps {
   diffMarkdown?: string;
@@ -41,8 +31,7 @@ export interface IInitMDXEditorProps {
 export default function InitializedMDXEditor({
   editorRef,
   ...props
-}: { editorRef: ForwardedRef<MDXEditorMethods> | null } & MDXEditorProps &
-  IInitMDXEditorProps) {
+}: { editorRef: ForwardedRef<MDXEditorMethods> | null } & MDXEditorProps & IInitMDXEditorProps) {
   return (
     <MDXEditor
       plugins={[
